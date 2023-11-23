@@ -1,6 +1,6 @@
 package conta.model;
 
-public class Conta {
+public abstract class Conta { // Criação de uma classe abstrata
 	
 	// Criação dos atributos, privados para implementar o conceito de encapsulamento, no qual os atributos podem ser acessado apenas pela própria classe
 	private int numero;
