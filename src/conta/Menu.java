@@ -11,7 +11,7 @@ import conta.util.Cores;
 
 public class Menu {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		
 		/* ----- TESTES
 		// Teste da Classe Conta Corrente
@@ -36,9 +36,9 @@ public class Menu {
 		int opcao = 0;
 		
 		// Variáveis para as contas
-		int numero, agencia, tipo, aniversario;
+		int numero, agencia, tipo, aniversario, numeroDestino;
 		String titular;
-		float saldo, limite;
+		float saldo, limite, valor;
 		
 		// Instância da Classe ContaController
 		ContaController contas = new ContaController();
@@ -198,14 +198,46 @@ public class Menu {
 					break;
 				case 6: // Faz um saque
 					System.out.println(Cores.TEXT_WHITE + "Saque\n\n");
+
+					System.out.println("Digite o Numero da conta: ");
+					numero = leia.nextInt();
+
+					do {
+						System.out.println("Digite o Valor do Saque (R$): ");
+						valor = leia.nextFloat();
+					} while (valor <= 0);
+
+					contas.sacar(numero, valor);
 					keyPress();
 					break;
 				case 7: // Faz um depósito
 					System.out.println(Cores.TEXT_WHITE + "Depósito\n\n");
+
+					System.out.println("Digite o Numero da conta: ");
+					numero = leia.nextInt();
+
+					do {
+						System.out.println("Digite o Valor do Depósito (R$): ");
+						valor = leia.nextFloat();
+					} while (valor <= 0);
+
+					contas.depositar(numero, valor);
 					keyPress();
 					break;
 				case 8: // Faz uma transferência para outra conta
 					System.out.println(Cores.TEXT_WHITE + "Transferência entre Contas\n\n");
+
+					System.out.println("Digite o Numero da Conta de Origem: ");
+					numero = leia.nextInt();
+					System.out.println("Digite o Numero da Conta de Destino: ");
+					numeroDestino = leia.nextInt();
+
+					do {
+						System.out.println("Digite o Valor da Transferência (R$): ");
+						valor = leia.nextFloat();
+					} while (valor <= 0);
+
+					contas.transferir(numero, numeroDestino, valor);
 					keyPress();
 					break;
 				default: // Opção inválida
